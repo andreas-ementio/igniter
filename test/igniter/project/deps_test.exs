@@ -57,11 +57,11 @@ defmodule Igniter.Project.DepsTest do
 
               # Run "mix help deps" to learn about dependencies.
               defp deps do
-                deps = [] 
+                deps = []
 
                 if 1 == 2 do
                   deps
-                else 
+                else
                   deps ++ [{:req, "~> 1.0"}]
                 end
               end
@@ -111,11 +111,11 @@ defmodule Igniter.Project.DepsTest do
 
               # Run "mix help deps" to learn about dependencies.
               defp deps do
-                deps = [] 
+                deps = []
 
                 if 1 == 2 do
                   deps
-                else 
+                else
                   deps ++ [{:req, "~> 1.0"}]
                 end
               end
@@ -151,6 +151,7 @@ defmodule Igniter.Project.DepsTest do
         "dep@1.0": {:dep, "~> 1.0"},
         "dep@git:git_url": {:dep, git: "git_url", override: true},
         "dep@git:git_url@ref": {:dep, git: "git_url", ref: "ref", override: true},
+        "dep@git:git@url:repo@ref": {:dep, git: "git@url:repo", ref: "ref", override: true},
         "dep@github:user/repo": {:dep, github: "user/repo", override: true},
         "dep@github:user/repo@ref": {:dep, github: "user/repo", ref: "ref", override: true},
         "dep@path:path/to/dep": {:dep, path: "path/to/dep", override: true},
@@ -159,6 +160,8 @@ defmodule Igniter.Project.DepsTest do
         "org/dep@git:git_url": {:dep, git: "git_url", override: true, organization: "org"},
         "org/dep@git:git_url@ref":
           {:dep, git: "git_url", ref: "ref", override: true, organization: "org"},
+        "org/dep@git:git@url:repo@ref":
+          {:dep, git: "git@url:repo", ref: "ref", override: true, organization: "org"},
         "org/dep@github:user/repo":
           {:dep, github: "user/repo", override: true, organization: "org"},
         "org/dep@github:user/repo@ref":

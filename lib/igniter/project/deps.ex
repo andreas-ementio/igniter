@@ -549,7 +549,20 @@ defmodule Igniter.Project.Deps do
   defp to_dependency_spec(package, nil, opts), do: {String.to_atom(package), opts}
   defp to_dependency_spec(package, version, opts), do: {String.to_atom(package), version, opts}
 
-  defp git_dep_opts(string, kind) do
+  defp git_dep_opts(string, :git = kind) do
+    case String.split(string, "@", trim: true, parts: 3) do
+      ["git", git_dep, ref] ->
+        [{kind, "git@" <> git_dep}, {:ref, ref}, {:override, true}]
+
+      [git_dep, ref] ->
+        [{kind, git_dep}, {:ref, ref}, {:override, true}]
+
+      [git_dep] ->
+        [{kind, git_dep}, {:override, true}]
+    end
+  end
+
+  defp git_dep_opts(string, :github = kind) do
     case String.split(string, "@", trim: true, parts: 2) do
       [git_dep, ref] ->
         [{kind, git_dep}, {:ref, ref}, {:override, true}]
